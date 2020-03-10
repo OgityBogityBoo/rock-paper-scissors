@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <script>
+      let playerSelection;
+      //gets random number between 0 and max
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+      }
+
+      //randomly picks an option for the computer
+      function computerPlay() {
+        let choices = ["Rock", "Paper", "Scissors"];
+        let index = getRandomInt(3);
+        return choices[index];
+      }
+
+      //receives player selection from html button input
+      function playerPlay(selection) {
+        playerSelection = selection;
+        let computerSelection = computerPlay();
+        playRound(playerSelection, computerSelection);
+      }
+
+      function compareSelections(playerSelection, computerSelection) {
+        let result;
+        //tie
+        if (playerSelection == computerSelection) {
+          result = "TIE!";
+          return result;
+        }
+        if (playerSelection == "Rock") {
+          if (computerSelection == "Paper") {
+            result = "YOU LOSE!";
+            return result;
+          } else {
+            result = "YOU WIN!";
+            return result;
+          }
+        }
+        if (playerSelection == "Paper") {
+          if (computerSelection == "Scissors") {
+            result = "YOU LOSE!";
+            return result;
+          } else {
+            result = "YOU WIN!";
+            return result;
+          }
+        }
+        if (playerSelection == "Scissors") {
+          if (computerSelection == "Rock") {
+            result = "YOU LOSE!";
+            return result;
+          } else {
+            result = "YOU WIN!";
+            return result;
+          }
+        }
+      }
+
+      //plays the game
+      function playRound(playerSelection, computerSelection) {
+        console.log("ROUND START!");
+        console.log("...");
+        console.log("Player Selection: " + playerSelection);
+        console.log("Computer Selection: " + computerSelection);
+        console.log(compareSelections(playerSelection, computerSelection));
+      }
+    </script>
+  </head>
+  <title>Rock, Paper, Scissors</title>
+  <body>
+    <button onclick="playerPlay('Rock')">Rock</button>
+    <button onclick="playerPlay('Paper')">Paper</button>
+    <button onclick="playerPlay('Scissors')">Scissors</button>
+  </body>
+</html>

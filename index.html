@@ -2,6 +2,10 @@
   <head>
     <script>
       let playerSelection;
+      let gameNumber = 1;
+      let maxGames = 5;
+      let playerScore = 0;
+      let computerScore = 0;
       //gets random number between 0 and max
       function getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
@@ -21,6 +25,7 @@
         playRound(playerSelection, computerSelection);
       }
 
+      //compares the player vs computer selections to see who won
       function compareSelections(playerSelection, computerSelection) {
         let result;
         //tie
@@ -31,39 +36,64 @@
         if (playerSelection == "Rock") {
           if (computerSelection == "Paper") {
             result = "YOU LOSE!";
+            computerScore++;
             return result;
           } else {
             result = "YOU WIN!";
+            playerScore++;
             return result;
           }
         }
         if (playerSelection == "Paper") {
           if (computerSelection == "Scissors") {
             result = "YOU LOSE!";
+            computerScore++;
             return result;
           } else {
             result = "YOU WIN!";
+            playerScore++;
             return result;
           }
         }
         if (playerSelection == "Scissors") {
           if (computerSelection == "Rock") {
             result = "YOU LOSE!";
+            computerScore++;
             return result;
           } else {
             result = "YOU WIN!";
+            playerScore++;
             return result;
           }
         }
       }
 
+      function finalResult() {
+        console.log("The results are in!");
+        console.log("Player Score: " + playerScore);
+        console.log("Computer Score: " + computerScore);
+        if (playerScore == computerScore) {
+          console.log("TIE!");
+          return;
+        }
+        if (playerScore > computerScore) {
+          console.log("YOU WIN!!!");
+        } else {
+          console.log("YOU LOSE!");
+        }
+      }
+
       //plays the game
       function playRound(playerSelection, computerSelection) {
-        console.log("ROUND START!");
-        console.log("...");
+        console.log(" ");
+        console.log("ROUND " + gameNumber + "!");
         console.log("Player Selection: " + playerSelection);
         console.log("Computer Selection: " + computerSelection);
         console.log(compareSelections(playerSelection, computerSelection));
+        gameNumber++;
+        if (gameNumber > maxGames) {
+          finalResult();
+        }
       }
     </script>
   </head>

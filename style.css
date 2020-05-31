@@ -1,0 +1,93 @@
+body {
+  background-color: #4c473f;
+}
+header {
+  margin: auto;
+  width: 60%;
+  align-content: center;
+  text-align: center;
+  /*margin-bottom: 4px;*/
+  padding: 5px;
+}
+
+header h1 {
+  font-family: "Work Sans", sans-serif;
+  border: 1px #ff9800 solid;
+  border-radius: 20px;
+  background-color: #f7b14a;
+  color: #6f4100;
+  padding: 5px;
+}
+
+#container {
+  margin: auto;
+  width: 60%;
+  align-content: center;
+  text-align: center;
+  border: 5px #ff9800 solid;
+  border-radius: 20px;
+  background-color: #ffedd2;
+  display: flex;
+}
+
+#gameInfo {
+  width: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #ff9800;
+  font-family: "Roboto", sans-serif;
+}
+
+#gameInfo ul {
+  display: inline;
+}
+
+#gameInfo ul li {
+  display: inline;
+  padding: 20px;
+}
+
+#playerControls {
+  margin-top: 5px;
+  font-family: "Roboto", sans-serif;
+  width: 50%;
+}
+
+#computerSection {
+  width: 50%;
+  font-family: "Roboto", sans-serif;
+}
+
+.choiceImage {
+  width: 100px;
+  height: 100px;
+}
+
+#computerChoice {
+}
+
+.choice {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+
+.choiceOverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: white;
+}
+
+.choice:hover .choiceOverlay {
+  opacity: 0.33;
+}
+
+/*font-family: 'Roboto', sans-serif;*/

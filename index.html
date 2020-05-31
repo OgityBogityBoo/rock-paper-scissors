@@ -1,106 +1,162 @@
 <html>
   <head>
-    <script>
-      let playerSelection;
-      let gameNumber = 1;
-      let maxGames = 5;
-      let playerScore = 0;
-      let computerScore = 0;
-      //gets random number between 0 and max
-      function getRandomInt(max) {
-        return Math.floor(Math.random() * Math.floor(max));
-      }
-
-      //randomly picks an option for the computer
-      function computerPlay() {
-        let choices = ["Rock", "Paper", "Scissors"];
-        let index = getRandomInt(3);
-        return choices[index];
-      }
-
-      //receives player selection from html button input
-      function playerPlay(selection) {
-        playerSelection = selection;
-        let computerSelection = computerPlay();
-        playRound(playerSelection, computerSelection);
-      }
-
-      //compares the player vs computer selections to see who won
-      function compareSelections(playerSelection, computerSelection) {
-        let result;
-        //tie
-        if (playerSelection == computerSelection) {
-          result = "TIE!";
-          return result;
-        }
-        if (playerSelection == "Rock") {
-          if (computerSelection == "Paper") {
-            result = "YOU LOSE!";
-            computerScore++;
-            return result;
-          } else {
-            result = "YOU WIN!";
-            playerScore++;
-            return result;
-          }
-        }
-        if (playerSelection == "Paper") {
-          if (computerSelection == "Scissors") {
-            result = "YOU LOSE!";
-            computerScore++;
-            return result;
-          } else {
-            result = "YOU WIN!";
-            playerScore++;
-            return result;
-          }
-        }
-        if (playerSelection == "Scissors") {
-          if (computerSelection == "Rock") {
-            result = "YOU LOSE!";
-            computerScore++;
-            return result;
-          } else {
-            result = "YOU WIN!";
-            playerScore++;
-            return result;
-          }
-        }
-      }
-
-      function finalResult() {
-        console.log("The results are in!");
-        console.log("Player Score: " + playerScore);
-        console.log("Computer Score: " + computerScore);
-        if (playerScore == computerScore) {
-          console.log("TIE!");
-          return;
-        }
-        if (playerScore > computerScore) {
-          console.log("YOU WIN!!!");
-        } else {
-          console.log("YOU LOSE!");
-        }
-      }
-
-      //plays the game
-      function playRound(playerSelection, computerSelection) {
-        console.log(" ");
-        console.log("ROUND " + gameNumber + "!");
-        console.log("Player Selection: " + playerSelection);
-        console.log("Computer Selection: " + computerSelection);
-        console.log(compareSelections(playerSelection, computerSelection));
-        gameNumber++;
-        if (gameNumber > maxGames) {
-          finalResult();
-        }
-      }
-    </script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Work+Sans:900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <title>Rock, Paper, Scissors</title>
   <body>
-    <button onclick="playerPlay('Rock')">Rock</button>
-    <button onclick="playerPlay('Paper')">Paper</button>
-    <button onclick="playerPlay('Scissors')">Scissors</button>
+    <header><h1>Rock, Paper, Scissors</h1></header>
+    <div id="container">
+      <div id="playerControls">
+        <!--PLAYER CHOICE: ROCK-->
+        <div class="choice">
+          <img
+            class="choiceImage"
+            alt="Rock"
+            src="src/rock.png"
+            onclick="playerPlay('Rock')"
+          />
+          <div class="choiceOverlay" onclick="playerPlay('Rock')"></div>
+        </div>
+        <!--PLAYER CHOICE: PAPER-->
+        <div class="choice">
+          <img
+            class="choiceImage"
+            alt="Paper"
+            src="src/PaperPlane.png"
+            onclick="playerPlay('Paper')"
+          />
+          <div class="choiceOverlay" onclick="playerPlay('Paper')"></div>
+        </div>
+        <!--PLAYER CHOICE: SCISSORS-->
+        <div class="choice">
+          <img
+            class="choiceImage"
+            alt="Scissors"
+            src="src/scissors.png"
+            onclick="playerPlay('Scissors')"
+          />
+          <div class="choiceOverlay" onclick="playerPlay('Scissors')"></div>
+        </div>
+      </div>
+      <div id="computerSection">
+        Computer</br>
+        <img class="choiceImage" alt="Rock" src="src/unknown.png" />
+      </div>
+      <div id="gameInfo">
+        <ul>
+          <li id="roundNumber">Round #</li>
+          <li id="playerScore">Player Score</li>
+          <li id="computerScore">Computer Score</li>
+        </ul>
+      </div>
+    </div>
   </body>
+  <script>
+    //DOM elements
+    const roundNumberText = document.querySelector("#roundNumber");
+    const playerScoreText = document.querySelector("#playerScore");
+    const computerScoreText = document.querySelector("#computerScore");
+
+    let playerSelection;
+    let gameNumber = 1;
+    let maxGames = 5;
+    let playerScore = 0;
+    let computerScore = 0;
+    //gets random number between 0 and max
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    //randomly picks an option for the computer
+    function computerPlay() {
+      let choices = ["Rock", "Paper", "Scissors"];
+      let index = getRandomInt(3);
+      return choices[index];
+    }
+
+    //receives player selection from html button input
+    function playerPlay(selection) {
+      playerSelection = selection;
+      let computerSelection = computerPlay();
+      playRound(playerSelection, computerSelection);
+    }
+
+    //compares the player vs computer selections to see who won
+    function compareSelections(playerSelection, computerSelection) {
+      let result;
+      //tie
+      if (playerSelection == computerSelection) {
+        result = "tie";
+        return result;
+      }
+      if (playerSelection == "Rock") {
+        if (computerSelection == "Paper") {
+          result = "computer";
+          computerScore++;
+          return result;
+        } else {
+          result = "player";
+          playerScore++;
+          return result;
+        }
+      }
+      if (playerSelection == "Paper") {
+        if (computerSelection == "Scissors") {
+          result = "computer";
+          computerScore++;
+          return result;
+        } else {
+          result = "player";
+          playerScore++;
+          return result;
+        }
+      }
+      if (playerSelection == "Scissors") {
+        if (computerSelection == "Rock") {
+          result = "computer";
+          computerScore++;
+          return result;
+        } else {
+          result = "player";
+          playerScore++;
+          return result;
+        }
+      }
+    }
+
+    function finalResult() {
+      console.log("The results are in!");
+      console.log("Player Score: " + playerScore);
+      console.log("Computer Score: " + computerScore);
+      if (playerScore == computerScore) {
+        console.log("TIE!");
+        return;
+      }
+      if (playerScore > computerScore) {
+        console.log("YOU WIN!!!");
+      } else {
+        console.log("YOU LOSE!");
+      }
+    }
+
+    //plays the game
+    function playRound(playerSelection, computerSelection) {
+      let result = compareSelections(playerSelection, computerSelection);
+      roundNumberText.textContent = "Round " + gameNumber;
+      playerScoreText.textContent = "Player: " + playerScore;
+      computerScoreText.textContent = "Computer: " + computerScore;
+      gameNumber++;
+      if (gameNumber > maxGames) {
+        finalResult();
+      }
+    }
+  </script>
 </html>
